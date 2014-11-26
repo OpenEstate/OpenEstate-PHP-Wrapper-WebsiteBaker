@@ -1,4 +1,4 @@
-OpenEstate-PHP-Wrapper for WebsiteBaker 0.2
+OpenEstate-PHP-Wrapper for WebsiteBaker 0.3
 ===========================================
 
 This module integrates [OpenEstate-PHP-Export](https://github.com/OpenEstate/OpenEstate-PHP-Export)
@@ -33,6 +33,13 @@ Webseite integriert werden.
 
 Changelog
 ---------
+
+### 0.3
+
+-   module internationalized
+-   module translated into English
+-   select between list and gallery view in the administration form
+-   fixed HTML errors in the administration form
 
 ### 0.2
 
