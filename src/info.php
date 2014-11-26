@@ -23,7 +23,7 @@ $module_name = 'OpenEstate PHP-Wrapper';
 $module_function = 'page';
 
 // Give your module an version number
-$module_version = '0.4.5';
+$module_version = '0.5-SNAPSHOT';
 
 // Say for what vesion you have designed the module, this line is needed for WB versions since 2.6.x
 $module_platform = '2.6.x';
