@@ -1,8 +1,8 @@
-OpenEstate-PHP-Wrapper for WebsiteBaker 0.5-SNAPSHOT
-====================================================
+OpenEstate-PHP-Wrapper for WebsiteBaker 0.5
+===========================================
 
 This module integrates [OpenEstate-PHP-Export](https://github.com/OpenEstate/OpenEstate-PHP-Export)
-into a *WebsiteBaker* based website.
+into a *WebsiteBaker* / *BlackCat CMS* / *LEPTON CMS* based website.
 
 
 Description
@@ -31,15 +31,43 @@ kann dieser PHP-Export unkompliziert in eine auf *WebsiteBaker* basierende
 Webseite integriert werden.
 
 
+Notes about *BlackCat CMS*
+--------------------------
+
+*BlackCat CMS* is a fork of *WebsiteBaker*, that is (currently) still compatible
+with the module API of *WebsiteBaker*. Without any modifications this module is
+still usable with *BlackCat CMS* in version **1.0.4**. But it is not guaranteed,
+that *BlackCat CMS* or *WebsiteBaker* break compatibility at some point in their
+development and this module is not usable anymore.
+
+Please consider the following notes about this module in *BlackCat CMS*:
+
+-   You should disable `E_STRICT` error logging in the backend settings of
+    *BlackCat CMS* in order to use this module.
+-   In case of `CSRF` in the administration backend errors you should follow
+    [this workaround](http://wiki.blackcat-cms.org/doku.php?id=faq:errors:csrf).
+
+
+Notes about *LEPTON CMS*
+------------------------
+
+*LEPTON CMS* is a fork of *WebsiteBaker*, that is (currently) still compatible
+with the module API of *WebsiteBaker*. Without any modifications this module is
+still usable with *LEPTON CMS* in version **1.3.2**. But it is not guaranteed,
+that *LEPTON CMS* or *WebsiteBaker* break compatibility at some point in their
+development and this module is not usable anymore.
+
+
 Changelog
 ---------
 
 ### 0.5
 
-*not released yet*
-
 -   translated any source code comments into English
 -   made some syntax fixes
+-   tested against the latest version of *WebsiteBaker* (2.8.3 SP3)
+-   tested against the latest version of *BlackCat CMS* (1.0.4)
+-   tested against the latest version of *LEPTON CMS* (1.3.2)
 
 ### 0.4.5
 

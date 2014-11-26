@@ -19,7 +19,7 @@
 $i18n = array();
 
 // Allgemein
-$i18n['description'] = 'Dieses Modul integriert PHP-Immobilienexporte aus dem OpenEstate-ImmoTool in WebsiteBaker.';
+$i18n['description'] = 'Dieses Modul integriert PHP-Immobilienexporte aus dem OpenEstate-ImmoTool in WebsiteBaker / BlackCat CMS / LEPTON CMS.';
 $i18n['setup'] = 'Anbindung der ImmoTool-Skripte';
 $i18n['view'] = 'Darstellung auf der Webseite';
 
