@@ -1,4 +1,4 @@
-OpenEstate-PHP-Wrapper for WebsiteBaker 0.4.2
+OpenEstate-PHP-Wrapper for WebsiteBaker 0.4.3
 =============================================
 
 This module integrates [OpenEstate-PHP-Export](https://github.com/OpenEstate/OpenEstate-PHP-Export)
@@ -33,6 +33,14 @@ Webseite integriert werden.
 
 Changelog
 ---------
+
+### 0.4.3
+
+-   Configured options of a properties page are not taken into account under
+    certain conditions.
+    (see [Forum](http://board.openestate.org/viewtopic.php?f=7&t=8698))
+-   Provide all available order options in the administration page.
+    (see [Forum](http://board.openestate.org/viewtopic.php?f=7&t=8763#p12562))
 
 ### 0.4.2
 

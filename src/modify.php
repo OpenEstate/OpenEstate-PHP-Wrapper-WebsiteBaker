@@ -2,10 +2,10 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Formular zum Bearbeiten einer Sektion.
- * $Id: modify.php 902 2011-06-16 00:13:32Z andy $
+ * $Id: modify.php 1619 2012-07-03 08:12:56Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009-2011, OpenEstate.org
+ * @copyright 2009-2012, OpenEstate.org
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
@@ -144,7 +144,11 @@ $environmentIsValid = count($environmentErrors)==0;
     $lang = null;
     if ($environmentIsValid) {
       $setupIndex = new immotool_setup_index();
-      $setupExpose = new immotool_setup_expose();
+      //$setupExpose = new immotool_setup_expose();
+      if (is_callable(array('immotool_functions', 'init_config'))) {
+        immotool_functions::init_config($setupIndex, 'load_config_index');
+        //immotool_functions::init_config($setupExpose, 'load_config_expose');
+      }
       $translations = null;
       $lang = immotool_functions::init_language( $setupIndex->DefaultLanguage, $setupIndex->DefaultLanguage, $translations );
       if (!is_array($translations)) {
@@ -202,7 +206,18 @@ $environmentIsValid = count($environmentErrors)==0;
               <?php
               $sortedOrders = array();
               $availableOrders = array();
-              foreach ($setupIndex->OrderOptions as $key) {
+              $orderNames = array();
+              if (!is_callable(array('immotool_functions', 'list_available_orders'))) {
+                // Mechanismus für ältere PHP-Exporte, um die registrierten Sortierungen zu verwenden
+                if (is_array($setupIndex->OrderOptions)) {
+                  $orderNames = $setupIndex->OrderOptions;
+                }
+              }
+              else {
+                // alle verfügbaren Sortierungen verwenden
+                $orderNames = immotool_functions::list_available_orders();
+              }
+              foreach ($orderNames as $key) {
                 $orderObj = immotool_functions::get_order($key);
                 //$by = $orderObj->getName();
                 $by = $orderObj->getTitle( $translations, $lang );
