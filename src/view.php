@@ -2,7 +2,7 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Darstellung einer Sektion auf der Webseite.
- * $Id: view.php 902 2011-06-16 00:13:32Z andy $
+ * $Id: view.php 1112 2011-10-21 19:10:37Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
  * @copyright 2009-2011, OpenEstate.org
@@ -86,6 +86,7 @@ else {
         }
       }
       if ($useDefaultParams) {
+        $_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER_CLEAR ] = '1';
         if (isset($settings['immotool_index']['lang']))
           $_REQUEST[ IMMOTOOL_PARAM_LANG ] = $settings['immotool_index']['lang'];
         if (isset($settings['immotool_index']['view']))
