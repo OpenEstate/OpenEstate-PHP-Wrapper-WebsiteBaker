@@ -16,11 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Must include code to stop this file being access directly
 if (defined('WB_PATH') == false) {
   exit("Cannot access this file directly");
 }
 include('info.php');
 
-//this adds a new line in the database when you add your modul to a page
+// this adds a new line in the database when you add your modul to a page
 $database->query("INSERT INTO " . TABLE_PREFIX . "mod_$module_directory (page_id,section_id) VALUES ('$page_id','$section_id')");

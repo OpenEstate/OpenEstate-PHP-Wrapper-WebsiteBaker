@@ -16,7 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Must include code to stop this file being access directly
 if (defined('WB_PATH') == false) {
   exit("Cannot access this file directly");
 }

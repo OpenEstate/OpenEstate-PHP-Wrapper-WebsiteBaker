@@ -16,15 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Must include code to stop this file being access directly
 if (defined('WB_PATH') == false) {
   exit("Cannot access this file directly");
 }
 include('info.php');
 
-//Delete Search table entries
+// delete search table entries
 $database->query("DELETE FROM " . TABLE_PREFIX . "search WHERE name = 'module' AND value = '$module_directory'");
 $database->query("DELETE FROM " . TABLE_PREFIX . "search WHERE extra = '$module_directory'");
 
-//Delete the modul directory
+// delete the module directory
 $database->query("DROP TABLE " . TABLE_PREFIX . "mod_$module_directory");

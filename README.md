@@ -38,6 +38,7 @@ Changelog
 
 *not released yet*
 
+-   translated any source code comments into English
 -   made some syntax fixes
 
 ### 0.4.5

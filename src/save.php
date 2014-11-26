@@ -19,11 +19,11 @@
 require('../../config.php');
 include('info.php');
 
-// Include WB admin wrapper script
-$update_when_modified = true; // Tells script to update when this page was last updated
+// include WB admin wrapper script
+$update_when_modified = true; // tells script to update when this page was last updated
 require(WB_PATH . '/modules/admin.php');
 
-// bisherige Konfiguration ermitteln
+// load current page configuration
 $settings = array();
 $query_content = $database->query("SELECT * FROM " . TABLE_PREFIX . "mod_$module_directory WHERE section_id = '$section_id'");
 if ($query_content->numRows() > 0) {
@@ -31,7 +31,7 @@ if ($query_content->numRows() > 0) {
   $settings = unserialize($fetch_content['wrapper_settings']);
 }
 
-// Änderungen in die Konfiguration übernehmen
+// put changes into configuration of the current page
 load_default_immotool_settings($settings);
 $settings['immotool_base_path'] = trim($admin->get_post('immotool_base_path'));
 $settings['immotool_base_url'] = trim($admin->get_post('immotool_base_url'));
@@ -40,29 +40,27 @@ $settings['immotool_index'] = $admin->get_post('immotool_index');
 $settings['immotool_index']['filter'] = $admin->get_post(IMMOTOOL_PARAM_INDEX_FILTER);
 $settings['immotool_expose'] = $admin->get_post('immotool_expose');
 
-// Pfad muss ein '/' am Ende haben
+// make sure, that the path ends with an /
 $len = strlen($settings['immotool_base_path']);
 if ($len > 0 && $settings['immotool_base_path'][$len - 1] != '/') {
   $settings['immotool_base_path'] .= '/';
 }
 
-// URL muss ein '/' am Ende haben
+// make sure, that the URL ends with an /
 $len = strlen($settings['immotool_base_url']);
 if ($len > 0 && $settings['immotool_base_url'][$len - 1] != '/') {
   $settings['immotool_base_url'] .= '/';
 }
 
-//echo '<pre>';
-//print_r($settings);
-//echo '</pre>';
+//echo '<pre>' . print_r($settings, true) . '</pre>';
 
-// Einstellungen in die Datenbank übernehmen
+// save modified page configuration
 $query = "UPDATE " . TABLE_PREFIX . "mod_$module_directory SET "
-    . " wrapper_settings = '" . serialize($settings) . "'";
-$query .= " WHERE section_id = '$section_id'";
+    . "wrapper_settings = '" . serialize($settings) . "' "
+    . "WHERE section_id = '$section_id'";
 $database->query($query);
 
-// Check if there is a database error, otherwise say successful
+// check if there is a database error, otherwise say successful
 if ($database->is_error()) {
   $admin->print_error($database->get_error(), $js_back);
 }
@@ -70,5 +68,5 @@ else {
   $admin->print_success($MESSAGE['PAGES']['SAVED'], ADMIN_URL . '/pages/modify.php?page_id=' . $page_id);
 }
 
-// Print admin footer
+// print admin footer
 $admin->print_footer();

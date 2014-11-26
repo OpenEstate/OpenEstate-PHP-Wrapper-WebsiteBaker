@@ -16,13 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Must include code to stop this file being access directly
 if (defined('WB_PATH') == false) {
   exit("Cannot access this file directly");
 }
 include('info.php');
 
-//get content from database
+// get content from database
 $query_content = $database->query("SELECT * FROM " . TABLE_PREFIX . "mod_$module_directory WHERE section_id = '$section_id'");
 if ($query_content->numRows() <= 0) {
   echo $module_i18n['error_no_page_found'];
@@ -32,31 +31,31 @@ else {
   $WB_PATH = WB_PATH;
   $WB_URL = WB_URL;
 
-  //load settings
+  // load settings
   $settings = unserialize($fetch_content['wrapper_settings']);
   if (!is_array($settings)) {
     $settings = array();
   }
   load_default_immotool_settings($settings);
 
-  //print settings for debugging
-  //echo '<pre>';
-  //print_r( $settings );
-  //echo '</pre>';
   // setup environment
-  define('IMMOTOOL_BASE_PATH', $settings['immotool_base_path']);  // Server-Pfad zu den ImmoTool-Skripten
-  define('IMMOTOOL_BASE_URL', $settings['immotool_base_url']);   // URL zu den ImmoTool-Skripten
+  //echo '<pre>' . print_r($settings, true) . '</pre>';
+  //echo '<pre>' . print_r($_REQUEST, true) . '</pre>';
+  //echo '<pre>' . print_r($_SERVER, true) . '</pre>';
+  define('IMMOTOOL_BASE_PATH', $settings['immotool_base_path']);
+  define('IMMOTOOL_BASE_URL', $settings['immotool_base_url']);
   if (is_file(IMMOTOOL_BASE_PATH . 'immotool.php.lock')) {
     echo $module_i18n['error_update_is_running'];
   }
   else {
-    // Script ermitteln
+
+    // determine the script to load
     $wrap = (isset($_REQUEST['wrap']) && is_string($_REQUEST['wrap'])) ? $_REQUEST['wrap'] : $settings['immotool_wrap_script'];
     if ($wrap == 'expose') {
       $wrap = 'expose';
       $script = 'expose.php';
-      //echo '<pre>' . print_r($_REQUEST, true) . '</pre>'; return;
-      // Standard-Konfigurationswerte beim ersten Aufruf setzen
+
+      // set default configuration values on the first request of the page
       if (!isset($_REQUEST['wrap'])) {
         if (isset($settings['immotool_expose']['lang'])) {
           $_REQUEST[IMMOTOOL_PARAM_LANG] = $settings['immotool_expose']['lang'];
@@ -72,8 +71,8 @@ else {
     else {
       $wrap = 'index';
       $script = 'index.php';
-      //echo '<pre>' . print_r($_REQUEST, true) . '</pre>'; return;
-      // Standard-Konfigurationswerte beim ersten Aufruf setzen
+
+      // set default configuration values on the first request of the page
       if (!isset($_REQUEST['wrap'])) {
         $_REQUEST[IMMOTOOL_PARAM_INDEX_FILTER_CLEAR] = '1';
         if (isset($settings['immotool_index']['lang'])) {
@@ -90,14 +89,14 @@ else {
         }
       }
 
-      // Zurücksetzen der gewählten Filter
+      // clear filter selections, if this is explicitly selected
       if (isset($_REQUEST[IMMOTOOL_PARAM_INDEX_RESET])) {
         unset($_REQUEST[IMMOTOOL_PARAM_INDEX_RESET]);
         $_REQUEST[IMMOTOOL_PARAM_INDEX_FILTER] = array();
         $_REQUEST[IMMOTOOL_PARAM_INDEX_FILTER_CLEAR] = '1';
       }
 
-      // vorgegebene Filter-Kriterien mit der Anfrage zusammenführen
+      // load configured filter criterias into the request
       if (!isset($_REQUEST['wrap']) || isset($_REQUEST[IMMOTOOL_PARAM_INDEX_FILTER])) {
         $filters = $settings['immotool_index']['filter'];
         if (is_array($filters)) {
@@ -113,15 +112,14 @@ else {
       }
     }
 
-    // Script ausführen
+    // execute the script
     //echo 'wrap: ' . IMMOTOOL_BASE_PATH . $script;
     ob_start();
     include( IMMOTOOL_BASE_PATH . $script );
     $page = ob_get_contents();
-    //ob_clean();
     ob_end_clean();
 
-    // Stylesheets
+    // setup stylesheets for the generated output
     $setup = new immotool_setup();
     if (is_callable(array('immotool_myconfig', 'load_config_default'))) {
       immotool_myconfig::load_config_default($setup);
@@ -131,13 +129,15 @@ else {
       $stylesheets[] = $setup->AdditionalStylesheet;
     }
 
-    // Ausgabe erzeugen
+    // setup base URL and hidden parameters for the generated output
     $baseUrl = $_SERVER['SCRIPT_NAME'];
     $hiddenParams = array();
     if (isset($_REQUEST['pageid'])) {
       $baseUrl .= '?pageid=' . $_REQUEST['pageid'];
       $hiddenParams['pageid'] = $_REQUEST['pageid'];
     }
+
+    // convert and return the script output
     echo immotool_functions::wrap_page($page, $wrap, $baseUrl, IMMOTOOL_BASE_URL, $stylesheets, $hiddenParams);
   }
 }

@@ -16,13 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Must include code to stop this file being access directly
 if (defined('WB_PATH') == false) {
   exit("Cannot access this file directly");
 }
 include('info.php');
 
-//get infos from the Database
+// get infos from the database
 $query_page_content = $database->query("SELECT * FROM " . TABLE_PREFIX . "pages WHERE page_id = '$page_id'");
 $fetch_page_content = $query_page_content->fetchRow();
 $page_created = $fetch_page_content['link'];
@@ -30,14 +29,14 @@ $page_created = $fetch_page_content['link'];
 $query_page_content = $database->query("SELECT * FROM " . TABLE_PREFIX . "mod_$module_directory WHERE section_id = '$section_id'");
 $fetch_page_content = $query_page_content->fetchRow();
 
-//load settings
+// load settings
 $settings = unserialize($fetch_page_content['wrapper_settings']);
 if (!is_array($settings)) {
   $settings = array();
 }
 load_default_immotool_settings($settings);
 
-// ImmoTool-Umgebung einbinden
+// init script environment
 $environmentErrors = array();
 $environmentFiles = array('config.php', 'private.php', 'include/functions.php', 'data/language.php');
 if (!is_dir($settings['immotool_base_path'])) {
@@ -65,12 +64,12 @@ $environmentIsValid = count($environmentErrors) == 0;
 ?>
 
 <script language="JavaScript" type="text/javascript">
-  <!--
-  function show_wrapper_settings($value)
-  {
-    document.getElementById('immotool_wrap_script_index_settings').style.visibility = ($value == 'index') ? 'visible' : 'collapse';
-    document.getElementById('immotool_wrap_script_expose_settings').style.visibility = ($value == 'expose') ? 'visible' : 'collapse';
-  }
+<!--
+function show_wrapper_settings($value)
+{
+  document.getElementById('immotool_wrap_script_index_settings').style.visibility = ($value == 'index') ? 'visible' : 'collapse';
+  document.getElementById('immotool_wrap_script_expose_settings').style.visibility = ($value == 'expose') ? 'visible' : 'collapse';
+}
 //-->
 </script>
 
@@ -85,7 +84,7 @@ $environmentIsValid = count($environmentErrors) == 0;
   </div>
   <h2><?php echo $module_i18n['info_authors']; ?></h2>
   <div style="text-align:center;">
-    <a href="http://www.openestate.org/" target="_blank">
+    <a href="http://openestate.org/" target="_blank">
       <img src="<?php echo WB_URL ?>/modules/openestate_php_wrapper/openestate.png" border="0" alt="0" />
       <div style="margin-top:0.5em;"><?php echo $module_author; ?></div>
     </a>
@@ -150,9 +149,10 @@ $environmentIsValid = count($environmentErrors) == 0;
         </td>
       </tr>
     </table>
-
     <?php
-    // Wenn eine gültige ImmoTool-Umgebung konfiguriert ist, können weitere Einstellungen vorgenommen werden
+
+    // show additional admin actions,
+    // if the scripts of OpenEstate-PHP-Export were correctly loaded
     $translations = null;
     $lang = null;
     if ($environmentIsValid) {
@@ -220,19 +220,21 @@ $environmentIsValid = count($environmentErrors) == 0;
               $sortedOrders = array();
               $availableOrders = array();
               $orderNames = array();
-              if (!is_callable(array('immotool_functions', 'list_available_orders'))) {
-                // Mechanismus für ältere PHP-Exporte, um die registrierten Sortierungen zu verwenden
-                if (is_array($setupIndex->OrderOptions)) {
-                  $orderNames = $setupIndex->OrderOptions;
-                }
-              }
-              else {
-                // alle verfügbaren Sortierungen verwenden
+
+              // get all available order classes
+              if (is_callable(array('immotool_functions', 'list_available_orders'))) {
                 $orderNames = immotool_functions::list_available_orders();
               }
+
+              // get explicitly enabled order classes
+              // this mechanism is a fallback for older versions of the OpenEstate-PHP-Export,
+              // that don't support immotool_functions::list_available_orders()
+              else if (is_array($setupIndex->OrderOptions)) {
+                $orderNames = $setupIndex->OrderOptions;
+              }
+
               foreach ($orderNames as $key) {
                 $orderObj = immotool_functions::get_order($key);
-                //$by = $orderObj->getName();
                 $by = $orderObj->getTitle($translations, $lang);
                 $sortedOrders[$key] = $by;
                 $availableOrders[$key] = $orderObj;
@@ -256,22 +258,21 @@ $environmentIsValid = count($environmentErrors) == 0;
               }
               echo '</optgroup>';
               ?>
-            </select>
+          </select>
           </td>
         </tr>
 
         <?php
-        //foreach ($setupIndex->FilterOptions as $key)
         foreach (immotool_functions::list_available_filters() as $key) {
           $filterObj = immotool_functions::get_filter($key);
           if (!is_object($filterObj)) {
-            //echo "Filter-Objekt $key nicht gefunden<hr/>";
+            //echo "Can't find filter object $key<hr/>";
             continue;
           }
           $filterValue = (isset($settings['immotool_index']['filter'][$key])) ? $settings['immotool_index']['filter'][$key] : '';
           $filterWidget = $filterObj->getWidget($filterValue, $lang, $translations, $setupIndex);
           if (!is_string($filterWidget) || strlen($filterWidget) == 0) {
-            //echo "Filter-Widget $key nicht erzeugt<hr/>";
+            //echo "Can't create widget for filter object $key<hr/>";
             continue;
           }
           $filterWidget = str_replace('<select ', '<select style="border:1px solid #c0c0c0;" ', $filterWidget);
