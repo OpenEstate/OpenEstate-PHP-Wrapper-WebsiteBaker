@@ -2,7 +2,7 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Darstellung einer Sektion auf der Webseite.
- * $Id: view.php 50 2010-03-25 02:44:21Z andy $
+ * $Id: view.php 594 2010-12-12 01:37:49Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
  * @copyright 2009, OpenEstate.org
@@ -103,7 +103,7 @@ else {
   $page = ob_get_contents();
   //ob_clean();
   ob_end_clean();
-
+  
   // Stylesheets
   $setup = new immotool_setup();
   if (is_callable(array('immotool_myconfig', 'load_config_default'))) immotool_myconfig::load_config_default( $setup );
@@ -112,6 +112,12 @@ else {
     $stylesheets[] = $setup->AdditionalStylesheet;
 
   // Ausgabe erzeugen
-  echo immotool_functions::wrap_page( $page, $wrap, $_SERVER['SCRIPT_NAME'], IMMOTOOL_BASE_URL, $stylesheets );
+  $baseUrl = $_SERVER['SCRIPT_NAME'];
+  $hiddenParams = array();
+  if (isset($_REQUEST['pageid'])) {
+    $baseUrl .= '?pageid='.$_REQUEST['pageid'];
+    $hiddenParams['pageid'] = $_REQUEST['pageid'];
+  }
+  echo immotool_functions::wrap_page( $page, $wrap, $baseUrl, IMMOTOOL_BASE_URL, $stylesheets, $hiddenParams );
 }
 ?>
