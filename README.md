@@ -1,5 +1,5 @@
-OpenEstate-PHP-Wrapper for WebsiteBaker 0.5-SNAPSHOT
-====================================================
+OpenEstate-PHP-Wrapper for WebsiteBaker 0.5
+===========================================
 
 This module integrates [OpenEstate-PHP-Export](https://github.com/OpenEstate/OpenEstate-PHP-Export)
 into a *WebsiteBaker* based website.
@@ -35,8 +35,6 @@ Changelog
 ---------
 
 ### 0.5
-
-*not released yet*
 
 -   translated any source code comments into English
 -   made some syntax fixes
