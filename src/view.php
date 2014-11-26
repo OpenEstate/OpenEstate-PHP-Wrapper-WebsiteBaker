@@ -2,7 +2,7 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Darstellung einer Sektion auf der Webseite.
- * $Id: view.php 1619 2012-07-03 08:12:56Z andy $
+ * $Id: view.php 1706 2012-08-15 14:47:38Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
  * @copyright 2009-2012, OpenEstate.org
@@ -87,12 +87,14 @@ else {
       // vorgegebene Filter-Kriterien mit der Anfrage zusammenführen
       if (!isset($_REQUEST[ 'wrap' ]) || isset($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ])) {
         $filters = $settings['immotool_index']['filter'];
-        foreach ($filters as $filter=>$value) {
-          if (!is_array($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ])) {
-            $_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ] = array();
-          }
-          if (!isset($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ][$filter])) {
-            $_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ][$filter] = $value;
+        if (is_array($filters)) {
+          foreach ($filters as $filter=>$value) {
+            if (!is_array($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ])) {
+              $_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ] = array();
+            }
+            if (!isset($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ][$filter])) {
+              $_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ][$filter] = $value;
+            }
           }
         }
       }

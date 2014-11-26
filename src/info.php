@@ -2,7 +2,7 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Allgemeine Informationen & Einstellungen zum Modul.
- * $Id: info.php 1619 2012-07-03 08:12:56Z andy $
+ * $Id: info.php 1706 2012-08-15 14:47:38Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
  * @copyright 2009-2012, OpenEstate.org
@@ -23,7 +23,7 @@ $module_name = 'OpenEstate PHP-Wrapper';
 $module_function = 'page';
 
 // Give your module an version number
-$module_version = '0.4.3';
+$module_version = '0.4.4';
 
 // Say for what vesion you have designed the module, this line is needed for WB versions since 2.6.x
 $module_platform = '2.6.x';
@@ -70,6 +70,8 @@ if (!defined('IMMOTOOL_PARAM_EXPOSE_CONTACT'))
   define('IMMOTOOL_PARAM_EXPOSE_CONTACT', 'wrapped_contact');
 if (!defined('IMMOTOOL_PARAM_EXPOSE_CAPTCHA'))
   define('IMMOTOOL_PARAM_EXPOSE_CAPTCHA', 'wrapped_captchacode');
+if (!defined('OPENESTATE_WRAPPER'))
+  define('OPENESTATE_WRAPPER', '1');
 
 
 /**
