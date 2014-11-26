@@ -5,7 +5,7 @@
  * $Id$
  *
  * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009-2012, OpenEstate.org
+ * @copyright 2009-2013, OpenEstate.org
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 

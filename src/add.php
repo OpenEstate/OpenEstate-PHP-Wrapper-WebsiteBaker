@@ -2,10 +2,10 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Eine neue Sektion hinzufügen.
- * $Id: add.php 1619 2012-07-03 08:12:56Z andy $
+ * $Id: add.php 2051 2013-02-12 07:50:03Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009-2012, OpenEstate.org
+ * @copyright 2009-2013, OpenEstate.org
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 

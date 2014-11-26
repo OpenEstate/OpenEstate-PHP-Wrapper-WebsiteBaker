@@ -2,10 +2,10 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Allgemeine Informationen & Einstellungen zum Modul.
- * $Id: info.php 1706 2012-08-15 14:47:38Z andy $
+ * $Id: info.php 2051 2013-02-12 07:50:03Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009-2012, OpenEstate.org
+ * @copyright 2009-2013, OpenEstate.org
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
@@ -23,7 +23,7 @@ $module_name = 'OpenEstate PHP-Wrapper';
 $module_function = 'page';
 
 // Give your module an version number
-$module_version = '0.4.4';
+$module_version = '0.4.5';
 
 // Say for what vesion you have designed the module, this line is needed for WB versions since 2.6.x
 $module_platform = '2.6.x';
