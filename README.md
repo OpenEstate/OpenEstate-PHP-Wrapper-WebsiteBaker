@@ -44,7 +44,7 @@ Please consider the following notes about this module in *BlackCat CMS*:
 
 -   You should disable `E_STRICT` error logging in the backend settings of
     *BlackCat CMS* in order to use this module.
--   In case of `CSRF` in the administration backend errors you should follow
+-   In case of `CSRF` errors in the administration backend you should follow
     [this workaround](http://wiki.blackcat-cms.org/doku.php?id=faq:errors:csrf).
 
 
