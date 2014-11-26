@@ -2,10 +2,10 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Darstellung einer Sektion auf der Webseite.
- * $Id: view.php 1706 2012-08-15 14:47:38Z andy $
+ * $Id: view.php 2051 2013-02-12 07:50:03Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009-2012, OpenEstate.org
+ * @copyright 2009-2013, OpenEstate.org
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
@@ -89,7 +89,7 @@ else {
         $filters = $settings['immotool_index']['filter'];
         if (is_array($filters)) {
           foreach ($filters as $filter=>$value) {
-            if (!is_array($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ])) {
+            if (!isset($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ]) || !is_array($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ])) {
               $_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ] = array();
             }
             if (!isset($_REQUEST[ IMMOTOOL_PARAM_INDEX_FILTER ][$filter])) {
@@ -111,7 +111,7 @@ else {
     // Stylesheets
     $setup = new immotool_setup();
     if (is_callable(array('immotool_myconfig', 'load_config_default'))) immotool_myconfig::load_config_default( $setup );
-    $stylesheets = array( IMMOTOOL_BASE_URL . 'style.php' );
+    $stylesheets = array( IMMOTOOL_BASE_URL . 'style.php?wrapped=1' );
     if (is_string($setup->AdditionalStylesheet) && strlen($setup->AdditionalStylesheet)>0)
       $stylesheets[] = $setup->AdditionalStylesheet;
 

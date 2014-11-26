@@ -1,4 +1,4 @@
-OpenEstate-PHP-Wrapper for WebsiteBaker 0.4.4
+OpenEstate-PHP-Wrapper for WebsiteBaker 0.4.5
 =============================================
 
 This module integrates [OpenEstate-PHP-Export](https://github.com/OpenEstate/OpenEstate-PHP-Export)
@@ -33,6 +33,10 @@ Webseite integriert werden.
 
 Changelog
 ---------
+
+### 0.4.5
+
+-   Some smaller improvements.
 
 ### 0.4.4
 
