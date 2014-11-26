@@ -1,12 +1,19 @@
 <?php
-/**
- * PHP-Wrapper für WebsiteBaker.
- * Sprachdatei, deutsch.
- * $Id: DE.php 2051 2013-02-12 07:50:03Z andy $
+/*
+ * A WebsiteBaker module for the OpenEstate-PHP-Export
+ * Copyright (C) 2010-2014 OpenEstate.org
  *
- * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009-2013, OpenEstate.org
- * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 $i18n = array();
@@ -69,4 +76,3 @@ $i18n['error_no_translation_found'] = 'Übersetzung kann nicht ermittelt werden!
 $i18n['error_update_is_running'] = '<h3>Der Immobilienbestand wird momentan aktualisiert!</h3><p>Bitte besuchen Sie diese Seite in wenigen Minuten erneut.</p>';
 
 return $i18n;
-?>

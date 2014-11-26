@@ -38,6 +38,8 @@ Changelog
 
 *not released yet*
 
+-   made some syntax fixes
+
 ### 0.4.5
 
 -   Some smaller improvements.
