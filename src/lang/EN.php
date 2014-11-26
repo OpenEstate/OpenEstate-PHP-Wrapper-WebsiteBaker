@@ -2,10 +2,10 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Sprachdatei, englisch.
- * $Id: EN.php 52 2010-03-25 02:53:26Z andy $
+ * $Id: EN.php 902 2011-06-16 00:13:32Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009, OpenEstate.org
+ * @copyright 2009-2011, OpenEstate.org
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
@@ -66,6 +66,7 @@ $i18n['error_no_export_path'] = 'Please enter a valid script path!';
 $i18n['error_no_export_file_found'] = 'The file \'%s\' was not found in the script path!';
 $i18n['error_no_export_version_found'] = 'Can\'t load the script version!';
 $i18n['error_no_translation_found'] = 'Can\'t find translation!';
+$i18n['error_update_is_running'] = '<h3>The properties are currently updated!</h3><p>Please revisit this page after some minutes.</p>';
 
 return $i18n;
 ?>

@@ -1,5 +1,5 @@
-OpenEstate-PHP-Wrapper for WebsiteBaker 0.4
-===========================================
+OpenEstate-PHP-Wrapper for WebsiteBaker 0.4.1
+=============================================
 
 This module integrates [OpenEstate-PHP-Export](https://github.com/OpenEstate/OpenEstate-PHP-Export)
 into a *WebsiteBaker* based website.
@@ -33,6 +33,13 @@ Webseite integriert werden.
 
 Changelog
 ---------
+
+### 0.4.1
+
+-   Show an error message on the website, if OpenEstate-ImmoTool is currently
+    exporting properties to the webspace.
+    (see [Bug-Tracker #594](http://tracker.openestate.org/view.php?id=594))
+-   Add an empty `upgrade.php` for better compatibility with *WebsiteBaker*.
 
 ### 0.4
 
