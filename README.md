@@ -1,5 +1,5 @@
-OpenEstate-PHP-Wrapper for WebsiteBaker
-=======================================
+OpenEstate-PHP-Wrapper for WebsiteBaker 0.2
+===========================================
 
 This module integrates [OpenEstate-PHP-Export](https://github.com/OpenEstate/OpenEstate-PHP-Export)
 into a *WebsiteBaker* based website.
@@ -15,7 +15,7 @@ for small and medium sized real-estate-agencies all over the world.
 
 As one certain feature of this software, the managed properties can be exported
 to any website that supports PHP. Together with this module, the exported
-properties can be easily integrated into a *CMS made simple* based website without
+properties can be easily integrated into a *WebsiteBaker* based website without
 any frames.
 
 ### Deutsch
@@ -27,8 +27,16 @@ Immobilienunternehmen entwickelt werden.
 
 Unter Anderem können die im *OpenEstate-ImmoTool* verwalteten Immobilien als
 PHP-Skripte auf die eigene Webseite exportiert werden. Mit Hilfe dieses Moduls
-kann dieser PHP-Export unkompliziert in eine auf *CMS made simple* basierende
+kann dieser PHP-Export unkompliziert in eine auf *WebsiteBaker* basierende
 Webseite integriert werden.
+
+
+Changelog
+---------
+
+### 0.2
+
+-   First public release
 
 
 License
