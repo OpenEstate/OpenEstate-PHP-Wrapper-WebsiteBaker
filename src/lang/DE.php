@@ -2,10 +2,10 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Sprachdatei, deutsch.
- * $Id: DE.php 52 2010-03-25 02:53:26Z andy $
+ * $Id: DE.php 902 2011-06-16 00:13:32Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009, OpenEstate.org
+ * @copyright 2009-2011, OpenEstate.org
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
@@ -66,6 +66,7 @@ $i18n['error_no_export_path'] = 'Bitte tragen Sie einen gültigen Export-Pfad ei
 $i18n['error_no_export_file_found'] = 'Die Datei \'%s\' befindet sich nicht im Export-Pfad!';
 $i18n['error_no_export_version_found'] = 'Die Skript-Version konnte nicht ermittelt werden!';
 $i18n['error_no_translation_found'] = 'Übersetzung kann nicht ermittelt werden!';
+$i18n['error_update_is_running'] = '<h3>Der Immobilienbestand wird momentan aktualisiert!</h3><p>Bitte besuchen Sie diese Seite in wenigen Minuten erneut.</p>';
 
 return $i18n;
 ?>

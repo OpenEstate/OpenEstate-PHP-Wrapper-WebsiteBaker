@@ -2,10 +2,10 @@
 /**
  * PHP-Wrapper für WebsiteBaker.
  * Formular zum Bearbeiten einer Sektion.
- * $Id: modify.php 50 2010-03-25 02:44:21Z andy $
+ * $Id: modify.php 902 2011-06-16 00:13:32Z andy $
  *
  * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009, OpenEstate.org
+ * @copyright 2009-2011, OpenEstate.org
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
