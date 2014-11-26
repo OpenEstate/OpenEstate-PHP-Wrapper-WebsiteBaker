@@ -1,31 +1,38 @@
 <?php
-/**
- * PHP-Wrapper für WebsiteBaker.
- * Eine bestehende Sektion aktualisieren.
- * $Id: save.php 2051 2013-02-12 07:50:03Z andy $
+/*
+ * A WebsiteBaker module for the OpenEstate-PHP-Export
+ * Copyright (C) 2010-2014 OpenEstate.org
  *
- * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009-2013, OpenEstate.org
- * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 require('../../config.php');
 include('info.php');
 
-// Include WB admin wrapper script
-$update_when_modified = true; // Tells script to update when this page was last updated
-require(WB_PATH.'/modules/admin.php');
+// include WB admin wrapper script
+$update_when_modified = true; // tells script to update when this page was last updated
+require(WB_PATH . '/modules/admin.php');
 
-// bisherige Konfiguration ermitteln
+// load current page configuration
 $settings = array();
-$query_content = $database->query("SELECT * FROM ".TABLE_PREFIX."mod_$module_directory WHERE section_id = '$section_id'");
-if($query_content->numRows() > 0) {
+$query_content = $database->query("SELECT * FROM " . TABLE_PREFIX . "mod_$module_directory WHERE section_id = '$section_id'");
+if ($query_content->numRows() > 0) {
   $fetch_content = $query_content->fetchRow();
-  $settings = unserialize( $fetch_content['wrapper_settings'] );
+  $settings = unserialize($fetch_content['wrapper_settings']);
 }
 
-// Änderungen in die Konfiguration übernehmen
-load_default_immotool_settings( $settings );
+// put changes into configuration of the current page
+load_default_immotool_settings($settings);
 $settings['immotool_base_path'] = trim($admin->get_post('immotool_base_path'));
 $settings['immotool_base_url'] = trim($admin->get_post('immotool_base_url'));
 $settings['immotool_wrap_script'] = $admin->get_post('immotool_wrap_script');
@@ -33,33 +40,33 @@ $settings['immotool_index'] = $admin->get_post('immotool_index');
 $settings['immotool_index']['filter'] = $admin->get_post(IMMOTOOL_PARAM_INDEX_FILTER);
 $settings['immotool_expose'] = $admin->get_post('immotool_expose');
 
-// Pfad muss ein '/' am Ende haben
+// make sure, that the path ends with an /
 $len = strlen($settings['immotool_base_path']);
-if ($len>0 && $settings['immotool_base_path'][$len-1]!='/')
+if ($len > 0 && $settings['immotool_base_path'][$len - 1] != '/') {
   $settings['immotool_base_path'] .= '/';
-
-// URL muss ein '/' am Ende haben
-$len = strlen($settings['immotool_base_url']);
-if ($len>0 && $settings['immotool_base_url'][$len-1]!='/')
-  $settings['immotool_base_url'] .= '/';
-
-//echo '<pre>';
-//print_r($settings);
-//echo '</pre>';
-
-// Einstellungen in die Datenbank übernehmen
-$query = "UPDATE ".TABLE_PREFIX."mod_$module_directory SET "
-        ." wrapper_settings = '" . serialize($settings) . "'";
-$query .= " WHERE section_id = '$section_id'";
-$database->query($query);
-
-// Check if there is a database error, otherwise say successful
-if($database->is_error()) {
-  $admin->print_error($database->get_error(), $js_back);
-} else {
-  $admin->print_success($MESSAGE['PAGES']['SAVED'], ADMIN_URL.'/pages/modify.php?page_id='.$page_id);
 }
 
-// Print admin footer
-$admin->print_footer()
-?>
+// make sure, that the URL ends with an /
+$len = strlen($settings['immotool_base_url']);
+if ($len > 0 && $settings['immotool_base_url'][$len - 1] != '/') {
+  $settings['immotool_base_url'] .= '/';
+}
+
+//echo '<pre>' . print_r($settings, true) . '</pre>';
+
+// save modified page configuration
+$query = "UPDATE " . TABLE_PREFIX . "mod_$module_directory SET "
+    . "wrapper_settings = '" . serialize($settings) . "' "
+    . "WHERE section_id = '$section_id'";
+$database->query($query);
+
+// check if there is a database error, otherwise say successful
+if ($database->is_error()) {
+  $admin->print_error($database->get_error(), $js_back);
+}
+else {
+  $admin->print_success($MESSAGE['PAGES']['SAVED'], ADMIN_URL . '/pages/modify.php?page_id=' . $page_id);
+}
+
+// print admin footer
+$admin->print_footer();

@@ -1,18 +1,25 @@
 <?php
-/**
- * PHP-Wrapper für WebsiteBaker.
- * Sprachdatei, englisch.
- * $Id: EN.php 2051 2013-02-12 07:50:03Z andy $
+/*
+ * A WebsiteBaker module for the OpenEstate-PHP-Export
+ * Copyright (C) 2010-2014 OpenEstate.org
  *
- * @author Andreas Rudolph & Walter Wagner
- * @copyright 2009-2013, OpenEstate.org
- * @license http://www.gnu.org/licenses/gpl-3.0.txt
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3 as
+ * published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 $i18n = array();
 
 // Allgemein
-$i18n['description'] = 'This module integrates PHP-exported properties from OpenEstate-ImmoTool into WebsiteBaker.';
+$i18n['description'] = 'This module integrates PHP-exported properties from OpenEstate-ImmoTool into WebsiteBaker / BlackCat CMS / LEPTON CMS.';
 $i18n['setup'] = 'Configure exported scripts';
 $i18n['view'] = 'Configure generated view';
 
@@ -69,4 +76,3 @@ $i18n['error_no_translation_found'] = 'Can\'t find translation!';
 $i18n['error_update_is_running'] = '<h3>The properties are currently updated!</h3><p>Please revisit this page after some minutes.</p>';
 
 return $i18n;
-?>
