@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAME="openestate-php-wrapper"
-VERSION="0.3"
+VERSION="0.4"
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 rm -Rf $PROJECT_DIR/release
