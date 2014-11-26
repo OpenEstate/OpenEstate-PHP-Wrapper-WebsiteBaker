@@ -1,5 +1,5 @@
-OpenEstate-PHP-Wrapper for WebsiteBaker 0.5
-===========================================
+OpenEstate-PHP-Wrapper for WebsiteBaker 0.6-SNAPSHOT
+====================================================
 
 This module integrates [OpenEstate-PHP-Export](https://github.com/OpenEstate/OpenEstate-PHP-Export)
 into a *WebsiteBaker* / *BlackCat CMS* / *LEPTON CMS* based website.
@@ -60,6 +60,10 @@ development and this module is not usable anymore.
 
 Changelog
 ---------
+
+### 0.6
+
+*not released yet*
 
 ### 0.5
 
