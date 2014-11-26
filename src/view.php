@@ -55,6 +55,9 @@ else {
       $wrap = 'expose';
       $script = 'expose.php';
 
+      // keep wrapper settings in a global variable for further use
+      $GLOBALS['openestate_wrapper_settings'] = $settings['immotool_expose'];
+
       // set default configuration values on the first request of the page
       if (!isset($_REQUEST['wrap'])) {
         if (isset($settings['immotool_expose']['lang'])) {
@@ -71,6 +74,9 @@ else {
     else {
       $wrap = 'index';
       $script = 'index.php';
+
+      // keep wrapper settings in a global variable for further use
+      $GLOBALS['openestate_wrapper_settings'] = $settings['immotool_index'];
 
       // set default configuration values on the first request of the page
       if (!isset($_REQUEST['wrap'])) {
