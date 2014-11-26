@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME="openestate-php-wrapper"
+NAME="openestate_php_wrapper"
 VERSION="0.5-SNAPSHOT"
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
